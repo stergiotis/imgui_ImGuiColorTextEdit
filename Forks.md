@@ -10,6 +10,6 @@ Interesting forks:
 
 * https://github.com/dfranx/ImGuiColorTextEdit/commits/master
   adds code folding, autocomplete, snippets
-
+  ==> very specific to Shader language spirV
 
 
