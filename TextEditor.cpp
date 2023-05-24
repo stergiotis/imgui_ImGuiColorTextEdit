@@ -50,6 +50,11 @@ TextEditor::TextEditor()
 	, mLastClick(-1.0f)
 {
 	SetPalette(GetMarianaPalette());
+#ifdef IMGUI_BUNDLE_BUILD_PYTHON
+    SetLanguageDefinition(LanguageDefinition::Python());
+#else
+    SetLanguageDefinition(LanguageDefinition::CPlusPlus());
+#endif
 	mLines.push_back(Line());
 }
 
