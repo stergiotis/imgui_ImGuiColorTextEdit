@@ -2691,7 +2691,7 @@ const TextEditor::Palette& TextEditor::GetMarianaPalette()
 			0xa6acb9ff, // Comment (multi line)
 			0x303841ff, // Background
 			0xe0e0e0ff, // Cursor
-			0x4e5a6580, // Selection
+			0x4e5aff80, // Selection
 			0xec5f6680, // ErrorMarker
 			0xffffff30, // ControlCharacter
 			0x0080f040, // Breakpoint
