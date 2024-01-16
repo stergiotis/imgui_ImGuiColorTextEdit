@@ -1816,6 +1816,22 @@ void TextEditor::SetSelectionStart(const Coordinates& aPosition, int aCursor)
 		std::swap(mState.mCursors[aCursor].mSelectionStart, mState.mCursors[aCursor].mSelectionEnd);
 }
 
+TextEditor::Coordinates TextEditor::GetSelectionStart(int aCursor) const
+{
+    if (aCursor == -1)
+        aCursor = mState.mCurrentCursor;
+    return mState.mCursors[aCursor].mSelectionStart;
+}
+
+TextEditor::Coordinates TextEditor::GetSelectionEnd(int aCursor) const
+
+{
+    if (aCursor == -1)
+        aCursor = mState.mCurrentCursor;
+    return mState.mCursors[aCursor].mSelectionEnd;
+}
+
+
 void TextEditor::SetSelectionEnd(const Coordinates& aPosition, int aCursor)
 {
 	if (aCursor == -1)

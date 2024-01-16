@@ -310,6 +310,8 @@ public:
 
 	void SetSelectionStart(const Coordinates& aPosition, int aCursor = -1);
 	void SetSelectionEnd(const Coordinates& aPosition, int aCursor = -1);
+    Coordinates GetSelectionStart(int aCursor = -1) const;
+    Coordinates GetSelectionEnd(int aCursor = -1) const;
 	void SetSelection(const Coordinates& aStart, const Coordinates& aEnd, SelectionMode aMode = SelectionMode::Normal, int aCursor = -1, bool isSpawningNewCursor = false);
 	void SetSelection(int aStartLine, int aStartCharIndex, int aEndLine, int aEndCharIndex, SelectionMode aMode = SelectionMode::Normal, int aCursor = -1, bool isSpawningNewCursor = false);
 	void SelectWordUnderCursor();
