@@ -2030,7 +2030,8 @@ void TextEditor::MoveLeft(int aAmount, bool aSelect, bool aWordMode)
 		for (int c = 0; c <= mState.mCurrentCursor; c++)
 		{
 			SetSelection(mState.mCursors[c].mSelectionStart, mState.mCursors[c].mSelectionStart, SelectionMode::Normal, c);
-			SetCursorPosition(mState.mCursors[c].mSelectionStart);
+            mState.mCursors[c].mInteractiveStart = mState.mCursors[c].mInteractiveEnd = mState.mCursors[c].mCursorPosition;
+            SetCursorPosition(mState.mCursors[c].mSelectionStart);
 		}
 	}
 	else
@@ -2078,7 +2079,6 @@ void TextEditor::MoveLeft(int aAmount, bool aSelect, bool aWordMode)
 			}
 
 			mState.mCursors[c].mCursorPosition = Coordinates(line, GetCharacterColumn(line, cindex));
-			std::cout << "changed from " << oldPos.mColumn << " to " << mState.mCursors[c].mCursorPosition.mColumn << std::endl;
 
 			assert(mState.mCursors[c].mCursorPosition.mColumn >= 0);
 			if (aSelect)
@@ -2099,7 +2099,6 @@ void TextEditor::MoveLeft(int aAmount, bool aSelect, bool aWordMode)
 					mState.mCursors[c].mCursorPosition = mState.mCursors[c].mInteractiveStart;
 				mState.mCursors[c].mInteractiveStart = mState.mCursors[c].mInteractiveEnd = mState.mCursors[c].mCursorPosition;
 			}
-			std::cout << "Setting selection for " << c << std::endl;
 			SetSelection(mState.mCursors[c].mInteractiveStart, mState.mCursors[c].mInteractiveEnd, aSelect && aWordMode ? SelectionMode::Word : SelectionMode::Normal, c);
 		}
 	}
@@ -2116,6 +2115,7 @@ void TextEditor::MoveRight(int aAmount, bool aSelect, bool aWordMode)
 		for (int c = 0; c <= mState.mCurrentCursor; c++)
 		{
 			SetSelection(mState.mCursors[c].mSelectionEnd, mState.mCursors[c].mSelectionEnd, SelectionMode::Normal, c);
+            mState.mCursors[c].mInteractiveStart = mState.mCursors[c].mInteractiveEnd = mState.mCursors[c].mCursorPosition;
 			SetCursorPosition(mState.mCursors[c].mSelectionEnd);
 		}
 	}
