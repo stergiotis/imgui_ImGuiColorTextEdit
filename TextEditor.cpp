@@ -13,6 +13,7 @@
 
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include "imgui.h" // for imGui::GetCurrentWindow()
+#include "imgui_internal.h"
 
 // TODO
 // - multiline comments vs single-line: latter is blocking start of a ML
@@ -1257,6 +1258,15 @@ void TextEditor::Render(bool aParentIsFocused)
 						ImVec2 cstart(textScreenPos.x + cx, lineStartScreenPos.y);
 						ImVec2 cend(textScreenPos.x + cx + width, lineStartScreenPos.y + mCharAdvance.y);
 						drawList->AddRectFilled(cstart, cend, mPalette[(int)PaletteIndex::Cursor]);
+
+                        { // see imgui_widgets.cpp
+                            ImGuiContext& g = *ImGui::GetCurrentContext();
+                            ImGuiWindow* window = ImGui::GetCurrentWindow();
+                            g.PlatformImeData.WantVisible = true;
+                            g.PlatformImeData.InputPos = ImVec2(textScreenPos.x - 1.0f, textScreenPos.y - fontSize);
+                            g.PlatformImeData.InputLineHeight = fontSize;
+                            g.PlatformImeViewport = window->Viewport->ID;
+                        }
 					}
 				}
 			}
