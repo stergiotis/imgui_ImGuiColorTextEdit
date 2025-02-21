@@ -285,12 +285,13 @@ public:
 	inline bool IsShowingShortTabGlyphs() const { return mShowShortTabGlyphs; }
 
 	inline ImVec4 U32ColorToVec4(ImU32 in) {
-		float s = 1.0f / 255.0f;
+		return ImGui::ColorConvertU32ToFloat4(in);
+		/*float s = 1.0f / 255.0f;
 		return ImVec4(
 			((in >> IM_COL32_A_SHIFT) & 0xFF) * s,
 			((in >> IM_COL32_B_SHIFT) & 0xFF) * s,
 			((in >> IM_COL32_G_SHIFT) & 0xFF) * s,
-			((in >> IM_COL32_R_SHIFT) & 0xFF) * s);
+			((in >> IM_COL32_R_SHIFT) & 0xFF) * s);*/
 	}
 
 	void SetTabSize(int aValue);
